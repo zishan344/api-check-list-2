@@ -17,11 +17,28 @@ const LoadPhto = (data) => {
   <img src="${user.thumbnailUrl}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">${user.title}</h5>
- 
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <button onclick="loadDetils('${user.id}')" class="btn btn-primary">see detils</button>
   </div>
 </div>
   `;
     photoSection.appendChild(div);
   });
+};
+const loadDetils = (data) => {
+  const url = `https://jsonplaceholder.typicode.com/photos/${data}`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => loadDetilspicj(data));
+};
+
+const loadDetilspicj = (data) => {
+  document.getElementById("photo-detils").innerHTML = `
+   <div class=" ">
+  <img src="${data.thumbnailUrl}" class="img-fluid" alt="...">
+  <div class="card-body ">
+    <h5 class="card-title text-center">${data.title}</h5>
+    <p class=" text-center card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+   `;
 };
