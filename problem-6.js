@@ -8,5 +8,5 @@ const student = {
 const { name, home, bankBalnace: balance1 } = student;
 // console.log(balance);
 const myArr = [12, 263, 45];
-const [bal1, bal2, balance] = myArr;
+const [, balance] = myArr;
 console.log(balance);
