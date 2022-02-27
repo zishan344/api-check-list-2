@@ -1,0 +1,27 @@
+/* #search-result {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+} */
+.meals-card img {
+  width: 100%;
+}
+
+/* #catagories {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 20px;
+} */
+.catagori {
+  cursor: pointer;
+}
+.catagori img {
+  max-width: 50px;
+}
+.not-fund {
+  display: none;
+}
+a {
+  text-decoration: none;
+}
