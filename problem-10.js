@@ -1,6 +1,16 @@
 //global variables
 const notFound = document.getElementById("not-found");
 
+// document.getElementById("btn-dark").addEventListener("click", (e) => {
+//   document.body.style.backgroundColor = "black";
+//   document.body.style.color = "white";
+//   const backgroudCard = document.getElementsByClassName("background");
+//   for (const bg of backgroudCard) {
+//     bg.style.backgroundColor = "white";
+//   }
+//   document.body.style.backgroundColor = "white";
+// });
+
 // spinner
 const toggleSpinner = (spinner, body) => {
   document.getElementById("looding").style.display = spinner;
@@ -26,8 +36,8 @@ const loadApi = () => {
     notFound.style.display = "block";
     const searchResults = document.getElementById("search-result");
     searchResults.innerHTML = "";
-    toggleSpinner("none", "block");
-    console.log(searchResults);
+
+    // console.log(searchResults);
   } else {
     notFound.style.display = "none";
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTextValue}
@@ -51,18 +61,19 @@ const displayApi = (data) => {
     notFound.style.display = "none";
   }
   const searchResults = document.getElementById("search-result");
-  console.log(searchResults);
+  // console.log(searchResults);
   searchResults.innerHTML = "";
   data?.forEach((element) => {
-    console.log(element);
+    // console.log(element);
     const div = document.createElement("div");
     div.classList.add("col-md-6");
     div.classList.add("col-sm-12");
     div.classList.add("col-lg-4");
+    // div.classList.add("background");
     // div.classList.add("");
     div.classList.add("my-4");
     div.innerHTML = `
-    <div class="meals-card px-4 py-2 shadow-lg rounded">
+    <div class="meals-card px-4 py-2 shadow-lg rounded background">
     <div>
       <img class="rounded" src="${element.strMealThumb}" alt="" />
     </div>
