@@ -1,19 +1,32 @@
+//global variables
 const notFound = document.getElementById("not-found");
 
+// spinner
+const toggleSpinner = (spinner, body) => {
+  document.getElementById("looding").style.display = spinner;
+  document.getElementById("container").style.display = body;
+};
+
+// first looding display data
 const randomMeals = () => {
+  toggleSpinner("block", "none");
   fetch("https://www.themealdb.com/api/json/v1/1/search.php?s")
     .then((response) => response.json())
     .then((data) => displayApi(data.meals));
 };
 randomMeals();
+
+// searching Data showoig display
 const loadApi = () => {
   const searchText = document.getElementById("loadApiData");
   //   console.log(searchText.value);
   const searchTextValue = searchText.value;
+  toggleSpinner("block", "none");
   if (searchTextValue == "") {
     notFound.style.display = "block";
     const searchResults = document.getElementById("search-result");
     searchResults.innerHTML = "";
+    toggleSpinner("none", "block");
     console.log(searchResults);
   } else {
     notFound.style.display = "none";
@@ -34,12 +47,13 @@ const displayApi = (data) => {
   if (data == null) {
     notFound.style.display = "block";
   } else {
+    // toggleSpinner("none", "block");
     notFound.style.display = "none";
   }
   const searchResults = document.getElementById("search-result");
   console.log(searchResults);
   searchResults.innerHTML = "";
-  data.forEach((element) => {
+  data?.forEach((element) => {
     console.log(element);
     const div = document.createElement("div");
     div.classList.add("col-md-6");
@@ -69,7 +83,10 @@ const displayApi = (data) => {
     `;
     searchResults.appendChild(div);
   });
+  toggleSpinner("none", "block");
 };
+
+// product detils load section
 const ProductDetilsLoad = (data) => {
   //   console.log(data);
   const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${data}`;
@@ -97,6 +114,7 @@ const displayDetils = (data) => {
   });
 };
 
+// catagoris
 const loadApiPart2 = () => {
   fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
     .then((response) => response.json())
@@ -106,9 +124,12 @@ loadApiPart2();
 
 const searchingData = (data) => {
   //   console.log(data);
+
   const catagories = document.getElementById("catagories");
+  // toggleSpinner("block", "none");
   data.forEach((category) => {
     const div = document.createElement("div");
+
     div.classList.add("catagori");
     div.classList.add("text-center");
     div.classList.add("col-sm-3");
@@ -126,9 +147,11 @@ const searchingData = (data) => {
     `;
     catagories.appendChild(div);
   });
+  // toggleSpinner("none", "block");
 };
 
 const loadSearchingDisplayData = (data) => {
+  toggleSpinner("block", "none");
   //   console.log(data);
   const url = `https:www.themealdb.com/api/json/v1/1/search.php?s=${data}`;
   fetch(url)
